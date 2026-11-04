@@ -1,13 +1,13 @@
+
 package Consultory.Pegasus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"Consultory.Pegasus", "Controller", "Service", "dto"})
 public class PegasusApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PegasusApplication.class, args);
 	}
-
 }

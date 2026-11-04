@@ -1,24 +1,40 @@
+
 package Service;
 
-import lombok.Getter;
-import lombok.Setter;
+
+
+import dto.ContactRequest;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-
-@Getter
-@Setter
 @Service
-public class EmailService{
-    String name;
-    String email;
-    String mensage;
+public class EmailService {
 
-    public EmailService (String name, String email, String mensage) {
-        this.name = name;
-        this.email = email;
-        this.mensage = mensage;
+    private final JavaMailSender mailSender;
+
+    @Value("${app.mail.to}")
+    private String recipient;
+
+    @Value("${spring.mail.username}")
+    private String sender;
+
+    public EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
     }
 
-    public EmailService() {
+    public void sendContactMessage(ContactRequest request) {
+
+        SimpleMailMessage email = new SimpleMailMessage();
+
+        email.setFrom(sender);
+        email.setTo(recipient);
+
+        email.setSubject("Novo contato pelo site Pegasus");
+
+        email.setText("Uma nova mensagem foi enviada pelo site.\n\n" + "Nome: " + request.name().trim() + "\n" + "Telefone: " + request.phone().trim() + "\n\n" + "Mensagem:\n" + request.message().trim());
+
+        mailSender.send(email);
     }
 }

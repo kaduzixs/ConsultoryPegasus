@@ -4,6 +4,7 @@ package Controller;
 
 
 import Service.EmailService;
+import dto.ContactRequest;
 import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
