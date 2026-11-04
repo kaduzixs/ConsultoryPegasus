@@ -1,7 +1,4 @@
-
 package Service;
-
-
 
 import dto.ContactRequest;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,9 +28,12 @@ public class EmailService {
         email.setFrom(sender);
         email.setTo(recipient);
 
+        // Permite responder diretamente ao visitante.
+        email.setReplyTo(request.email().trim());
+
         email.setSubject("Novo contato pelo site Pegasus");
 
-        email.setText("Uma nova mensagem foi enviada pelo site.\n\n" + "Nome: " + request.name().trim() + "\n" + "Telefone: " + request.phone().trim() + "\n\n" + "Mensagem:\n" + request.message().trim());
+        email.setText("Uma nova mensagem foi enviada pelo site Pegasus.\n\n" + "E-mail do visitante: " + request.email().trim() + "\n" + "Telefone: " + request.phone().trim() + "\n\n" + "Mensagem:\n" + request.message().trim());
 
         mailSender.send(email);
     }

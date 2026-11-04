@@ -82,13 +82,30 @@
         <div class="contact-email"><span class="email-icon" aria-hidden="true">✉</span><div><small>FALE DIRETAMENTE</small><a href="mailto:lisboasnery@gmail.com">lisboasnery@gmail.com</a></div></div>
       </div>
       <form class="contact-form" id="contact-form">
-        <label for="name">Nome completo <span>*</span></label>
-        <input id="name" name="name" type="text" placeholder="Como podemos chamar você?" autocomplete="name" maxlength="100" required>
+
+        <label for="email">Seu e-mail <span>*</span></label>
+        <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="seuemail@exemplo.com"
+                autocomplete="email"
+                maxlength="200"
+                required
+        >
+
         <label for="phone">Número de telefone <span>*</span></label>
         <input id="phone" name="phone" type="tel" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel" maxlength="20" required>
+
         <label for="message">Sua mensagem <span>*</span></label>
         <textarea id="message" name="message" rows="5" placeholder="Descreva sua necessidade ou o desafio que deseja resolver..." maxlength="4000" required></textarea>
-        <div class="form-bottom"><p>Ao enviar, você concorda que usemos esses dados para responder ao seu contato.</p><button class="button button-primary submit-button" type="submit"><span class="button-label">Enviar mensagem</span><span aria-hidden="true">↗</span></button></div>
+        <div class="form-bottom">
+          <p>Ao enviar, você concorda que usemos esses dados para responder ao seu contato.</p>
+          <button class="button button-primary submit-button" type="submit">
+            <span class="button-label">Enviar mensagem</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
         <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
       </form>
     </div>

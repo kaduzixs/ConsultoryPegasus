@@ -1,4 +1,3 @@
-
 const API_ENDPOINT = 'http://localhost:8080/api/contact';
 
 const form = document.querySelector('#contact-form');
@@ -6,13 +5,14 @@ const statusMessage = document.querySelector('#form-status');
 const submitButton = form.querySelector('button[type="submit"]');
 const buttonLabel = submitButton.querySelector('.button-label');
 const phoneInput = document.querySelector('#phone');
+const emailInput = document.querySelector('#email');
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('#mobile-nav');
 
 // Mostra o ano atual automaticamente no rodapé.
 document.querySelector('#year').textContent = new Date().getFullYear();
 
-// Mantém o menu móvel acessível pelo teclado e informa seu estado ao leitor de tela.
+// Menu móvel.
 menuToggle.addEventListener('click', () => {
     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
 
@@ -29,7 +29,7 @@ mobileNav.querySelectorAll('a').forEach((link) => {
     });
 });
 
-// Aplica uma máscara simples ao telefone sem impedir a digitação de números internacionais.
+// Máscara de telefone.
 phoneInput.addEventListener('input', () => {
     const digits = phoneInput.value.replace(/\D/g, '').slice(0, 13);
 
@@ -46,7 +46,7 @@ phoneInput.addEventListener('input', () => {
     }
 });
 
-// Envia os dados do formulário para o backend Spring Boot.
+// Envia os dados para o backend Spring Boot.
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -70,7 +70,7 @@ form.addEventListener('submit', async (event) => {
     buttonLabel.textContent = 'Enviando...';
 
     const payload = {
-        name: document.querySelector('#name').value.trim(),
+        email: emailInput.value.trim(),
         phone: phoneInput.value.trim(),
         message: document.querySelector('#message').value.trim(),
         website: ''
