@@ -23,23 +23,15 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, String>> send(
-            @Valid @RequestBody ContactRequest request) {
+    public ResponseEntity<Map<String, String>> send(@Valid @RequestBody ContactRequest request) {
 
-        if (request.website() != null &&
-                !request.website().isBlank()) {
+        if (request.website() != null && !request.website().isBlank()) {
 
-            return ResponseEntity.ok(
-                    Map.of("message", "Mensagem recebida.")
-            );
+            return ResponseEntity.ok(Map.of("message", "Mensagem recebida."));
         }
 
         emailService.sendContactMessage(request);
 
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(Map.of(
-                        "message",
-                        "Mensagem enviada com sucesso."
-                ));
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of("message", "Mensagem enviada com sucesso."));
     }
 }
